@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import './style/Auth.css';
 export default class Auth extends Component {
   render() {
     return (
