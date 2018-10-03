@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import Card from '../common/Card/Card'
 import Button from '../common/Button/Button'
 
-import './style/Auth.css';
+import './style/auth.css';
 
 export default class Auth extends Component {
   state = {
@@ -17,15 +18,15 @@ export default class Auth extends Component {
   render() {
     const { logged } = this.state;
     return (
-      <div className="Auth">
-        <input className="Auth__input" type="text" />
-        <input className="Auth__input" type="password" />
+      <Card className="auth">
+        <input className="auth__input" type="text" />
+        <input className="auth__input" type="password" />
 
         <Button onClick={() => this.toggleLogin()}>
           {logged ? 'Выйти' : 'Войти'}
         </Button>
 
-      </div>
+      </Card>
     );
   }
 }
