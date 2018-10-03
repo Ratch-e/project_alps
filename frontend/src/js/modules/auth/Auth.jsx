@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Button from '../common/Button/Button'
+
 import './style/Auth.css';
 
 export default class Auth extends Component {
@@ -6,7 +8,7 @@ export default class Auth extends Component {
     logged: false,
   }
 
-  toggleLogin= () => {
+  toggleLogin = () => {
     this.setState({
       logged: !this.state.logged
     })
@@ -19,14 +21,9 @@ export default class Auth extends Component {
         <input className="Auth__input" type="text" />
         <input className="Auth__input" type="password" />
 
-        <button 
-          onClick={() => this.toggleLogin()}
-          className="Auth__button"
-          >
+        <Button onClick={() => this.toggleLogin()}>
           {logged ? 'Выйти' : 'Войти'}
-        </button>
-
-        <a href="#">Зарегистрироваться</a>
+        </Button>
 
       </div>
     );
