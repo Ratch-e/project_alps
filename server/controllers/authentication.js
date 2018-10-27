@@ -26,7 +26,7 @@ const checkCredentials = (email, password, res) => {
 };
 
 /**
- * Handles signup request
+ * Handles create new user request
  *
  * @param {*} req
  * @param {*} res
@@ -59,3 +59,7 @@ exports.signup = (req, res, next) => {
     )));
   });
 };
+
+exports.signin = (req, res, next) => {
+  res.send({ token: tokenForUser(req.user) });
+}
