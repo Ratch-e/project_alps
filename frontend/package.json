@@ -10,11 +10,9 @@
     "react-dom": "^16.5.2",
     "react-redux": "^5.1.0",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "2.0.3",
-    "redux": "^4.0.1",
-    "redux-form": "^7.4.2",
-    "redux-thunk": "^2.3.0"
+    "react-scripts": "2.0.3"
   },
+  "proxy": "http://localhost:9000/",
   "scripts": {
     "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src -o src",
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src -o src --watch --recursive",
