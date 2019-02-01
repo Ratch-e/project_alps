@@ -5,7 +5,7 @@ import './style/button.css';
 const Button = ({ children, onClick, className }) => (
   <button 
     className={classnames('button', className)}
-    onClick = { () => onClick() }
+    onClick = { onClick }
     >
     { children }
   </button>

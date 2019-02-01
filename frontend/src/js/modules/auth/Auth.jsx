@@ -2,21 +2,17 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import Card from '../../components/Card/Card';
 import Button from '../../components/Button/Button';
-
+import { SIGNIN_API } from '../../constants/routing'
 import './style/Auth.css';
 
 export default class Auth extends Component {
-  state = {
-    logged: false,
-    email: '',
-    password: '',
-  };
-
-  toggleLogin = () => {
-    this.setState(state => ({
-      logged: !state.logged,
-    }));
-  };
+  constructor(props) {
+    super(props)
+    this.state = {
+      email: '',
+      password: '',
+    };
+  }
 
   handleEmailInput = (email) => {
     this.setState({
@@ -31,14 +27,15 @@ export default class Auth extends Component {
   }
 
   authorize = () => {
-    Axios.post('/api/signin/', {
-      email: this.state.email,
-      password: this.state.password,
-    }).then(() => this.toggleLogin())
+    const { email, password } = this.state;
+    Axios.post(SIGNIN_API, {
+      email,
+      password,
+    }).then((res) => console.log(res))
   }
 
   render() {
-    const { logged, email, password } = this.state;
+    const { email, password } = this.state;
     return (
       <Card className="auth">
         <label>
@@ -49,8 +46,7 @@ export default class Auth extends Component {
           Password
           <input className="auth__input" type="password" value={password} onChange={this.handlePasswordInput}/>
         </label>
-
-        <Button onClick={this.authorize}>{logged ? 'Выйти' : 'Войти'}</Button>
+        <Button onClick={this.authorize}>Войти</Button>
       </Card>
     );
   }

@@ -52,11 +52,16 @@ exports.signup = (req, res, next) => {
 
     //if everything is ok - create a new user and save it
     const newUser = new User({ email, password });
-    newUser.save(err => (err ? next(err) : res.json(
-      {
-        token: tokenForUser(newUser)
-      }
-    )));
+    newUser.save(err => 
+      (err ?
+        next(err) :
+        res.json(
+          {
+            token: tokenForUser(newUser)
+          }
+        )
+      )
+    );
   });
 };
 
