@@ -8,21 +8,20 @@ import { SIGNIN_API } from '../../constants/routing';
 import './style/Auth.css';
 
 export default class Auth extends Component {
-  authorize = (values, { setSubmitting }) => {
+  authorize = values => {
     const { email, password } = values;
-
     Axios.post(SIGNIN_API, {
       email,
       password,
-    }).then(res => setSubmitting(false));
+    });
   };
 
   validate = values => {
     let errors = {};
     if (!values.email) {
-      errors.email = 'Required';
+      errors.email = 'This field is required';
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-      errors.email = 'Invalid email address';
+      errors.email = 'Invalid email address format';
     }
     return errors;
   };
@@ -33,12 +32,13 @@ export default class Auth extends Component {
         <Formik 
           initialValues={{ email: '', password: '' }}
           validate={this.validate}
+          validateOnChange={false}
           onSubmit={this.authorize}
         >
         {
-          (isSubmitting) => (
-            <Form onSubmit={this.authorize}>
-              <label>
+          ({ handleSubmit, isSubmitting, errors }) => (
+            <Form onSubmit={handleSubmit}>
+              <label className="auth__field">
                 Email
                 <Field 
                   className="auth__input" 
@@ -48,22 +48,24 @@ export default class Auth extends Component {
                 <ErrorMessage 
                   name="email" 
                   component="div" 
+                  className="auth__error"
                 />
               </label>
-              <label>
+              <label className="auth__field">
                 Password
                 <Field 
                   className="auth__input" 
                   type="password" 
-                  name="password" 
+                  name="password"
                 />
                 <ErrorMessage 
                   name="password" 
-                  component="div" 
+                  component="div"
+                  className="auth__error"
                 />
               </label>
               <Button 
-                type="submit" 
+                type="submit"
                 disabled={isSubmitting}
               >
                 Войти
