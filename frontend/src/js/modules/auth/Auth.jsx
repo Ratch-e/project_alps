@@ -1,52 +1,77 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+
 import Card from '../../components/Card/Card';
 import Button from '../../components/Button/Button';
-import { SIGNIN_API } from '../../constants/routing'
+import { SIGNIN_API } from '../../constants/routing';
 import './style/Auth.css';
 
 export default class Auth extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      email: '',
-      password: '',
-    };
-  }
+  authorize = (values, { setSubmitting }) => {
+    const { email, password } = values;
 
-  handleEmailInput = (email) => {
-    this.setState({
-      email: email.target.value,
-    })
-  }
-
-  handlePasswordInput = (password) => {
-    this.setState({
-      password: password.target.value,
-    })
-  }
-
-  authorize = () => {
-    const { email, password } = this.state;
     Axios.post(SIGNIN_API, {
       email,
       password,
-    }).then((res) => console.log(res))
-  }
+    }).then(res => setSubmitting(false));
+  };
+
+  validate = values => {
+    let errors = {};
+    if (!values.email) {
+      errors.email = 'Required';
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+      errors.email = 'Invalid email address';
+    }
+    return errors;
+  };
 
   render() {
-    const { email, password } = this.state;
     return (
       <Card className="auth">
-        <label>
-          Email
-          <input className="auth__input" type="text" value={email} onChange={this.handleEmailInput}/>
-        </label>
-        <label>
-          Password
-          <input className="auth__input" type="password" value={password} onChange={this.handlePasswordInput}/>
-        </label>
-        <Button onClick={this.authorize}>Войти</Button>
+        <Formik 
+          initialValues={{ email: '', password: '' }}
+          validate={this.validate}
+          onSubmit={this.authorize}
+        >
+        {
+          (isSubmitting) => (
+            <Form onSubmit={this.authorize}>
+              <label>
+                Email
+                <Field 
+                  className="auth__input" 
+                  type="email" 
+                  name="email" 
+                />
+                <ErrorMessage 
+                  name="email" 
+                  component="div" 
+                />
+              </label>
+              <label>
+                Password
+                <Field 
+                  className="auth__input" 
+                  type="password" 
+                  name="password" 
+                />
+                <ErrorMessage 
+                  name="password" 
+                  component="div" 
+                />
+              </label>
+              <Button 
+                type="submit" 
+                disabled={isSubmitting}
+              >
+                Войти
+              </Button>
+            </Form>
+          )
+        }
+        </Formik>
       </Card>
     );
   }
