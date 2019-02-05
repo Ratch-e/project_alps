@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import { Provider } from 'react-redux';
+import { Provider } from 'mobx-react';
 
 import Routing from '../../containers/Routing/Routing';
-import configureStore from '../../store/configureStore';
+import AuthStore from '../../store/AuthStore';
 
-const store = configureStore();
-
+const stores = {
+  AuthStore,
+}
 export default class App extends Component {
   render() {
     return (
-      <Provider store={store}>
+      <Provider {...stores}>
         <Routing />
       </Provider>
     );
