@@ -57,7 +57,7 @@ exports.signup = (req, res, next) => {
         next(err) :
         res.json(
           {
-            token: tokenForUser(newUser)
+            token: tokenForUser(newUser),
           }
         )
       )

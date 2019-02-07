@@ -1,17 +1,19 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
-import { LOGIN } from '../../constants/routing';
-import Auth from '../../modules/Auth/Auth';
-import MainPage from '../../modules/MainPage/MainPage'
-import NoPage from '../../modules/NoPage/NoPage'
+import { LOGIN, SIGNUP } from '../../constants/routing';
+import Login from '../../modules/Auth/Login';
+import SignUp from '../../modules/Auth/SignUp';
+import MainPage from '../../modules/MainPage/MainPage';
+import NoPage from '../../modules/NoPage/NoPage';
 
 const Routing = ({ children }) => (
   <Router>
     <Switch>
-      <Route path="/" exact component={MainPage}></Route>
-      <Route path={LOGIN} exact component={Auth}></Route>
-      <Route component={NoPage}></Route>
+      <Route path="/" exact component={MainPage} />
+      <Route path={LOGIN} exact component={Login} />
+      <Route path={SIGNUP} exact component={SignUp} />
+      <Route component={NoPage} />
     </Switch>
   </Router>
 );
