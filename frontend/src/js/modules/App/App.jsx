@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Provider } from 'mobx-react';
 
-import Routing from '../../containers/Routing/Routing';
+import Routing from '../Routing/Routing';
 import AuthStore from '../../store/AuthStore';
 
 const stores = {

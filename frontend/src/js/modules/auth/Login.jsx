@@ -6,7 +6,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import Card from '../../components/Card/Card';
 import Button from '../../components/Button/Button';
 import { SIGNIN_API } from '../../constants/routing';
-import './style/Auth.css';
+import './style/auth.sass';
 
 @inject('AuthStore')
 @observer

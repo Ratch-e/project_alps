@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames'; 
-import './style/button.css';
+import './style/button.sass';
 
 const Button = ({ children, onClick, className, type }) => (
   <button 
