@@ -12,9 +12,12 @@ const Routing = ({ children }) => (
   <Router>
     <div>
       <Header />
-      <Route path="/" exact component={MainPage} />
-      <Route path={LOGIN} exact component={Login} />
-      <Route path={SIGNUP} exact component={SignUp} />
+      <Switch>
+        <Route path="/" exact component={MainPage} />
+        <Route path={LOGIN} exact component={Login} />
+        <Route path={SIGNUP} exact component={SignUp} />
+        <Route component={NoPage} />
+      </Switch>
     </div>
   </Router>
 );

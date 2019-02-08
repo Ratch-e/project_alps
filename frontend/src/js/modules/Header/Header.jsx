@@ -1,12 +1,12 @@
 import React from 'react';
 import UserBar from '../User/UserBar';
 
+import './style/header.sass'
+
 const Header = () => (
   <div className="header">
-    <div className="header__block">Лого</div>
-    <div className="header__block">
-      <UserBar />
-    </div>
+    Лого
+    <UserBar />
   </div>
 )
 
