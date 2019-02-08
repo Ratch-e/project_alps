@@ -28,7 +28,8 @@ export default class Login extends Component {
       password,
     })
     .then(result => {
-      setLoggedInUser(result.data.token)
+      setLoggedInUser(result.data);
+      this.props.history.push('/');
     })
     .catch(() => this.setState({
       loginError: 'Email или пароль не верны.'

@@ -23,12 +23,14 @@ export default class SignUp extends Component {
     const { email, password } = values;
     const { setLoggedInUser } = this.props.AuthStore;
 
-    Axios.post(SIGNUP_API, {
+    Axios
+    .post(SIGNUP_API, {
       email,
       password,
     })
     .then(result => {
-      setLoggedInUser(result.data.token)
+      setLoggedInUser(result.data);
+      this.props.history.push('/');
     })
     .catch(() => this.setState({
       signupError: 'Такой пользователь уже существует'

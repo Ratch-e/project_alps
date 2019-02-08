@@ -1,10 +1,11 @@
 import React from 'react';
+import UserBar from '../User/UserBar';
 
 const Header = () => (
   <div className="header">
     <div className="header__block">Лого</div>
     <div className="header__block">
-      Тут будет юзер
+      <UserBar />
     </div>
   </div>
 )

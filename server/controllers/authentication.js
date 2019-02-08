@@ -58,6 +58,7 @@ exports.signup = (req, res, next) => {
         res.json(
           {
             token: tokenForUser(newUser),
+            email: newUser.email,
           }
         )
       )
@@ -66,5 +67,8 @@ exports.signup = (req, res, next) => {
 };
 
 exports.signin = (req, res, next) => {
-  res.send({ token: tokenForUser(req.user) });
+  res.send({ 
+    token: tokenForUser(req.user),
+    email: req.user.email,
+  });
 }
