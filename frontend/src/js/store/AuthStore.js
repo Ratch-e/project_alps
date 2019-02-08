@@ -1,7 +1,7 @@
 import {observable, action} from 'mobx';
 
 class AuthStore {
-  @observable loggedInUser = "";
+  @observable loggedInUser = null;
 
   @action
   setLoggedInUser = (user) => this.loggedInUser = user;
