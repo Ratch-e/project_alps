@@ -30,6 +30,7 @@ export default class SignUp extends Component {
     })
     .then(result => {
       setLoggedInUser(result.data);
+      localStorage.setItem('AlpsToken', JSON.stringify(result.data))
       this.props.history.push('/');
     })
     .catch(() => this.setState({

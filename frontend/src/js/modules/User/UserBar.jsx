@@ -9,6 +9,7 @@ export default class UserBar extends Component {
   logout = () => {
     const { setLoggedInUser } = this.props.AuthStore;
     setLoggedInUser(null);
+    localStorage.removeItem('AlpsUser');
   }
   render() {
     const { loggedInUser } = this.props.AuthStore;

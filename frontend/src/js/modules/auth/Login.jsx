@@ -23,12 +23,14 @@ export default class Login extends Component {
     const { email, password } = values;
     const { setLoggedInUser } = this.props.AuthStore;
 
-    Axios.post(SIGNIN_API, {
+    Axios
+    .post(SIGNIN_API, {
       email,
       password,
     })
     .then(result => {
       setLoggedInUser(result.data);
+      localStorage.setItem('AlpsUser', JSON.stringify(result.data))
       this.props.history.push('/');
     })
     .catch(() => this.setState({
