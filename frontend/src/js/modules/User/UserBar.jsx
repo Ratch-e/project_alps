@@ -19,7 +19,9 @@ export default class UserBar extends Component {
         </div>
         <div className="user-bar__action">
           {loggedInUser ? (
+            <div>
             <a onClick={this.logout} href="#">Выйти</a>
+            <Link to="/profile/">мой профиль</Link></div>
           ) : <Link to={LOGIN}>Войти</Link> }
         </div>
       </div>
