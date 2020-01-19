@@ -1,5 +1,5 @@
 //API
-export const SIGNIN_API = "/api/signin/";
+export const SIGNIN_API = "/api/login/";
 export const SIGNUP_API = "/api/signup/";
 
 //ROUTES

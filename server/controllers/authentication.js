@@ -65,7 +65,7 @@ exports.signup = (req, res, next) => {
   });
 };
 
-exports.signin = (req, res, next) => {
+exports.login = (req, res, next) => {
   res.send({
     token: tokenForUser(req.user),
     email: req.user.email,
