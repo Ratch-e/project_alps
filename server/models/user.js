@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt-nodejs');
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt-nodejs");
 
 const Schema = mongoose.Schema;
 
@@ -9,29 +9,34 @@ const userSchema = new Schema({
   password: String,
 });
 
-
 //on save hook - encrypt the password
-userSchema.pre('save', function(next) {
+userSchema.pre("save", function(next) {
   const user = this;
 
   bcrypt.genSalt(10, function(err, salt) {
-    if(err) {return next(err)}
+    if (err) {
+      return next(err);
+    }
 
     bcrypt.hash(user.password, salt, null, function(err, hash) {
-      if(err) {return next(err)}
+      if (err) {
+        return next(err);
+      }
 
       user.password = hash;
       next();
-    })
-  })
+    });
+  });
 });
 
 userSchema.methods.comparePassword = function(candidatePassword, callback) {
   bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-    if(err){ return callback(err) }
+    if (err) {
+      return callback(err);
+    }
 
-    return callback(null, isMatch)
+    return callback(null, isMatch);
   });
 };
 
-module.exports = mongoose.model('user', userSchema);
+module.exports = mongoose.model("user", userSchema);

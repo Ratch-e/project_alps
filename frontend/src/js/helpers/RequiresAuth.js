@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import { inject, observer } from 'mobx-react';
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import { inject, observer } from "mobx-react";
 
 const RequiresAuth = Child =>
   withRouter(
-    inject('AuthStore')(
+    inject("AuthStore")(
       observer(
         class extends Component {
           componentDidMount() {
@@ -18,7 +18,7 @@ const RequiresAuth = Child =>
           shouldNavigateAway = () => {
             const { AuthStore, history } = this.props;
             if (!AuthStore.loggedInUser) {
-              history.push('/');
+              history.push("/");
             }
           };
 

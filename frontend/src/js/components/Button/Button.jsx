@@ -1,14 +1,14 @@
-import React from 'react';
-import classnames from 'classnames'; 
-import './style/button.sass';
+import React from "react";
+import classnames from "classnames";
+import "./style/button.sass";
 
 const Button = ({ children, onClick, className, type }) => (
-  <button 
-    className={classnames('button', className)}
-    onClick = {onClick}
-    type = {type}
-    >
-    { children }
+  <button
+    className={classnames("button", className)}
+    onClick={onClick}
+    type={type}
+  >
+    {children}
   </button>
 );
 

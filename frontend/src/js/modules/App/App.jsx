@@ -1,8 +1,8 @@
-import React, { Component, Fragment } from 'react';
-import { Provider } from 'mobx-react';
+import React, { Component, Fragment } from "react";
+import { Provider } from "mobx-react";
 
-import Routing from '../Routing/Routing';
-import AuthStore from '../../store/AuthStore';
+import Routing from "../Routing/Routing";
+import AuthStore from "../../store/AuthStore";
 
 const stores = {
   AuthStore,
