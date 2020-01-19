@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import { LOGIN, SIGNUP } from "../../constants/routing";
+import { LOGIN, SIGNUP, ROOT, PROFILE_PAGE } from "../../constants/routing";
 import Login from "../Auth/Login";
 import SignUp from "../Auth/SignUp";
 import MainPage from "../MainPage/MainPage";
@@ -14,10 +14,10 @@ const Routing = ({ children }) => (
     <div>
       <Header />
       <Switch>
-        <Route path="/" exact component={MainPage} />
+        <Route path={ROOT} exact component={MainPage} />
         <Route path={LOGIN} exact component={Login} />
         <Route path={SIGNUP} exact component={SignUp} />
-        <Route path="/profile/" exact component={Profile} />
+        <Route path={PROFILE_PAGE} exact component={Profile} />
         <Route component={NoPage} />
       </Switch>
     </div>

@@ -1,9 +1,5 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { LOGIN, SIGNUP } from "../../constants/routing";
+import React from "react";
 
-export default class MainPage extends Component {
-  render() {
-    return <div>Я - главная страница.</div>;
-  }
-}
+const MainPage = () => <div>Я - главная страница.</div>;
+
+export default MainPage;

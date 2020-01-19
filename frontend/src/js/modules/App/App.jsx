@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React from "react";
 import { Provider } from "mobx-react";
 
 import Routing from "../Routing/Routing";
@@ -7,14 +7,11 @@ import AuthStore from "../../store/AuthStore";
 const stores = {
   AuthStore,
 };
-export default class App extends Component {
-  render() {
-    return (
-      <Provider {...stores}>
-        <Fragment>
-          <Routing />
-        </Fragment>
-      </Provider>
-    );
-  }
-}
+
+const App = () => (
+  <Provider {...stores}>
+    <Routing />
+  </Provider>
+);
+
+export default App;
