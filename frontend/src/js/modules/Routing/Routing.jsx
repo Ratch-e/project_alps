@@ -2,12 +2,12 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import { LOGIN, SIGNUP } from "../../constants/routing";
-import Login from "../../modules/Auth/Login";
-import Header from "../../modules/Header/Header";
-import SignUp from "../../modules/Auth/SignUp";
-import MainPage from "../../modules/MainPage/MainPage";
-import Profile from "../../modules/User/Profile";
-import NoPage from "../../modules/NoPage/NoPage";
+import Login from "../Auth/Login";
+import SignUp from "../Auth/SignUp";
+import MainPage from "../MainPage/MainPage";
+import Profile from "../User/Profile";
+import NoPage from "../NoPage/NoPage";
+import Header from "../Header/Header";
 
 const Routing = ({ children }) => (
   <Router>

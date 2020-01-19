@@ -7,14 +7,14 @@ const router = require("./router/router");
 
 const app = express();
 
-// логирование
+// добавить логирование
 app.use(
   morgan(
     ':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms',
   ),
 );
 app.use(cors());
-// статика
+// добавить статику
 app.use(express.static(path.resolve(__dirname, "..", "frontend", "build")));
 app.use(bodyParser.json({ type: "*/*" }));
 

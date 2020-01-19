@@ -9,7 +9,7 @@ const router = express.Router();
 const requireAuth = passport.authenticate("jwt", { session: false });
 const requireSignin = passport.authenticate("local", { session: false });
 
-mongoose.connect("mongodb://127.0.0.1:27017/DBAlps", { useNewUrlParser: true });
+mongoose.connect("mongodb://127.0.0.1:27017/Alps", { useNewUrlParser: true });
 
 router.use((req, res, next) => {
   next();
