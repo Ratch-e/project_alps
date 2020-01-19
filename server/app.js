@@ -2,10 +2,14 @@ const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
 const cors = require("cors");
+const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const router = require("./router/router");
 
 const app = express();
+
+mongoose.connect("mongodb://127.0.0.1:27017/Alps", { useNewUrlParser: true });
+mongoose.set("useCreateIndex", true);
 
 // добавить логирование
 app.use(
