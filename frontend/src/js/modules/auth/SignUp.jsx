@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import Axios from "axios";
-import { inject, observer } from "mobx-react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useHistory } from "react-router-dom";
 
 import Card from "../../components/Card/Card";
 import Button from "../../components/Button/Button";
@@ -10,7 +10,8 @@ import AuthStore from "../../store/AuthStore";
 
 import "./style/Auth.sass";
 
-const SignUp = ({ history }) => {
+const SignUp = () => {
+  const history = useHistory();
   const store = useContext(AuthStore);
   const [signupError, setSignupError] = useState("");
 

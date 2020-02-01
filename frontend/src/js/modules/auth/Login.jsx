@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import Axios from "axios";
-import { inject, observer } from "mobx-react";
+import { useHistory } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
 import Card from "../../components/Card/Card";
@@ -10,7 +10,8 @@ import AuthStore from "../../store/AuthStore";
 
 import "./style/Auth.sass";
 
-const Login = ({ history }) => {
+const Login = () => {
+  const history = useHistory();
   const store = useContext(AuthStore);
   const [loginError, setLoginError] = useState("");
 
@@ -20,7 +21,7 @@ const Login = ({ history }) => {
 
     Axios.post(SIGNIN_API, {
       email,
-      password,
+      password
     })
       .then(result => {
         setLoggedInUser(result.data);
@@ -82,14 +83,12 @@ const Login = ({ history }) => {
             <Button type="submit" disabled={isSubmitting}>
               Войти
             </Button>
-            {loginError && (
-              <div className="auth__error">{loginError}</div>
-            )}
+            {loginError && <div className="auth__error">{loginError}</div>}
           </Form>
         )}
       </Formik>
     </Card>
   );
-}
+};
 
 export default Login;

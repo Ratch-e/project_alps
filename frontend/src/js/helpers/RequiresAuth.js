@@ -1,33 +1,19 @@
-import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
-import { inject, observer } from "mobx-react";
+import React, { useEffect, useContext, Children } from "react";
+import { useHistory } from "react-router-dom";
+import AuthStore from "../store/AuthStore";
 
-const RequiresAuth = Child =>
-  withRouter(
-    inject("AuthStore")(
-      observer(
-        class extends Component {
-          componentDidMount() {
-            this.shouldNavigateAway();
-          }
+const RequiresAuth = ({ children }) => {
+  const history = useHistory();
+  const store = useContext(AuthStore);
+  const shouldNavigateAway = () => {
+    if (!store.loggedInUser) {
+      history.push("/");
+    }
+  };
 
-          componentDidUpdate() {
-            this.shouldNavigateAway();
-          }
+  useEffect(() => shouldNavigateAway(), []);
 
-          shouldNavigateAway = () => {
-            const { AuthStore, history } = this.props;
-            if (!AuthStore.loggedInUser) {
-              history.push("/");
-            }
-          };
-
-          render() {
-            return <Child />;
-          }
-        },
-      ),
-    ),
-  );
+  return <>{children}</>;
+};
 
 export default RequiresAuth;
