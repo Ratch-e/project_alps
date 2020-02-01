@@ -8,6 +8,7 @@
     "mobx": "^5.9.0",
     "mobx-react": "^5.4.3",
     "mobx-react-devtools": "^6.0.3",
+    "mobx-react-lite": "^1.5.2",
     "node-sass": "^4.13.1",
     "npm-run-all": "^4.1.3",
     "react": "^16.5.2",
@@ -37,7 +38,18 @@
     "@storybook/react": "^5.3.6",
     "babel-core": "^6.26.3",
     "babel-runtime": "^6.26.0",
-    "customize-cra": "^0.2.11"
+    "customize-cra": "^0.2.11",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-node": "^4.0.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.18.0",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "prettier": "^1.19.1"
   },
   "browserslist": [
     ">0.2%",

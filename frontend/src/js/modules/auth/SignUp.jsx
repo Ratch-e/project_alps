@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useContext, useState } from "react";
 import Axios from "axios";
 import { inject, observer } from "mobx-react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -6,42 +6,31 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import Card from "../../components/Card/Card";
 import Button from "../../components/Button/Button";
 import { SIGNUP_API } from "../../constants/routing";
+import AuthStore from "../../store/AuthStore";
 
 import "./style/Auth.sass";
 
-@inject("AuthStore")
-@observer
-export default class SignUp extends Component {
-  state = {
-    signupError: "",
-  };
+const SignUp = ({ history }) => {
+  const store = useContext(AuthStore);
+  const [signupError, setSignupError] = useState("");
 
-  removeErrors = () =>
-    this.setState({
-      signupError: "",
-    });
-
-  authorize = values => {
+  const authorize = values => {
     const { email, password } = values;
-    const { setLoggedInUser } = this.props.AuthStore;
+    const { setLoggedInUser } = store;
 
     Axios.post(SIGNUP_API, {
       email,
-      password,
+      password
     })
       .then(result => {
         setLoggedInUser(result.data);
         localStorage.setItem("AlpsToken", JSON.stringify(result.data));
-        this.props.history.push("/");
+        history.push("/");
       })
-      .catch(() =>
-        this.setState({
-          signupError: "Такой пользователь уже существует",
-        }),
-      );
+      .catch(() => setSignupError("Такой пользователь уже существует"));
   };
 
-  validate = values => {
+  const validate = values => {
     let errors = {};
     if (!values.email) {
       errors.email = "This field is required";
@@ -53,70 +42,68 @@ export default class SignUp extends Component {
     return errors;
   };
 
-  render() {
-    return (
-      <Card className="auth">
-        <div className="card__title">Регистрация</div>
-        <Formik
-          initialValues={{ email: "", password: "", password2: "" }}
-          validate={this.validate}
-          validateOnChange={false}
-          onSubmit={this.authorize}
-        >
-          {({ handleSubmit, isSubmitting }) => (
-            <Form onSubmit={handleSubmit}>
-              <label className="auth__field">
-                Email
-                <Field
-                  autoComplete="off"
-                  className="auth__input"
-                  type="email"
-                  name="email"
-                />
-                <ErrorMessage
-                  name="email"
-                  component="div"
-                  className="auth__error"
-                />
-              </label>
-              <label className="auth__field">
-                Пароль
-                <Field
-                  autoComplete="off"
-                  className="auth__input"
-                  type="password"
-                  name="password"
-                />
-                <ErrorMessage
-                  name="password"
-                  component="div"
-                  className="auth__error"
-                />
-              </label>
-              <label className="auth__field">
-                Повторите пароль
-                <Field
-                  autoComplete="off"
-                  className="auth__input"
-                  type="password"
-                  name="password2"
-                />
-                <ErrorMessage
-                  name="password2"
-                  component="div"
-                  className="auth__error"
-                />
-              </label>
-              <Button type="submit" disabled={isSubmitting}>
-                Зарегистрироваться
-              </Button>
-              {this.state.signupError && (
-                <div className="auth__error">{this.state.signupError}</div>
-              )}
-            </Form>
-          )}
-        </Formik>
-      </Card>
-    );
-  }
-}
+  return (
+    <Card className="auth">
+      <div className="card__title">Регистрация</div>
+      <Formik
+        initialValues={{ email: "", password: "", password2: "" }}
+        validate={validate}
+        validateOnChange={false}
+        onSubmit={authorize}
+      >
+        {({ handleSubmit, isSubmitting }) => (
+          <Form onSubmit={handleSubmit}>
+            <label className="auth__field">
+              Email
+              <Field
+                autoComplete="off"
+                className="auth__input"
+                type="email"
+                name="email"
+              />
+              <ErrorMessage
+                name="email"
+                component="div"
+                className="auth__error"
+              />
+            </label>
+            <label className="auth__field">
+              Пароль
+              <Field
+                autoComplete="off"
+                className="auth__input"
+                type="password"
+                name="password"
+              />
+              <ErrorMessage
+                name="password"
+                component="div"
+                className="auth__error"
+              />
+            </label>
+            <label className="auth__field">
+              Повторите пароль
+              <Field
+                autoComplete="off"
+                className="auth__input"
+                type="password"
+                name="password2"
+              />
+              <ErrorMessage
+                name="password2"
+                component="div"
+                className="auth__error"
+              />
+            </label>
+            <Button type="submit" disabled={isSubmitting}>
+              Зарегистрироваться
+            </Button>
+            {signupError && <div className="auth__error">{signupError}</div>}
+          </Form>
+        )}
+      </Formik>
+    </Card>
+  );
+};
+
+export default SignUp;
