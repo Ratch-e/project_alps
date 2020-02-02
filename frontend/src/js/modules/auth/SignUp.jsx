@@ -8,7 +8,7 @@ import Button from "../../components/Button/Button";
 import { SIGNUP_API } from "../../constants/routing";
 import AuthStore from "../../store/AuthStore";
 
-import "./style/Auth.sass";
+import "./auth.sass";
 
 const SignUp = () => {
   const history = useHistory();
