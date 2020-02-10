@@ -1,13 +1,15 @@
-import React from "react";
-import UserBar from "../User/UserBar";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import UserBar from '../User/UserBar';
 
-import "./header.sass";
+import styles from './header.module.css';
+import { ROOT } from '../../constants/routing';
 
 const Header = () => (
-  <div className="header">
-    Лого
-    <UserBar />
-  </div>
+    <header className={styles.header}>
+        <Link to={ROOT}>Лого</Link>
+        <UserBar />
+    </header>
 );
 
 export default Header;

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const MainPage = () => <div>Я - главная страница.</div>;
 

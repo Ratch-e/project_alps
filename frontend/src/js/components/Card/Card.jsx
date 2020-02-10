@@ -1,9 +1,20 @@
-import React from "react";
-import classnames from "classnames";
-import "./card.sass";
+import React from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
+import styles from './card.module.css';
 
 const Card = ({ children, className }) => (
-  <div className={classnames("card", className)}>{children}</div>
+    <div className={classnames(styles.card, className)}>{children}</div>
 );
+
+Card.propTypes = {
+    children: PropTypes.element,
+    className: PropTypes.string,
+};
+
+Card.defaultProps = {
+    children: null,
+    className: null,
+};
 
 export default Card;
