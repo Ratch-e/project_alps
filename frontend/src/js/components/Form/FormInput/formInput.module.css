@@ -1,3 +1,7 @@
-.input {
-    border: red;
+.wrapper {
+    display: block;
+    position: relative;
+}
+
+.label {
 }

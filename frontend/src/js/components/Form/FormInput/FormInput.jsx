@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { useField } from 'formik';
 import classnames from 'classnames';
 
+import Input from '../../Input/Input';
+
 import styles from './formInput.module.css';
 
 const FormInput = ({
@@ -10,15 +12,15 @@ const FormInput = ({
 }) => {
     const [field, meta] = useField(props);
     return (
-        <label className={classnames(styles.input, className)}>
-            {label}
-            <input
+        <label className={classnames(styles.wrapper, className)}>
+            <span className={styles.label}>{label}</span>
+            <Input
                 type={type}
                 {...field}
                 {...props}
             />
             {meta.touched && meta.error ? (
-                <p>{meta.error}</p>
+                <div>{meta.error}</div>
             ) : null}
         </label>
     );

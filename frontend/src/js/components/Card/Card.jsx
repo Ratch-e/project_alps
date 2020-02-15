@@ -8,7 +8,7 @@ const Card = ({ children, className }) => (
 );
 
 Card.propTypes = {
-    children: PropTypes.element,
+    children: PropTypes.element || PropTypes.arrayOf(PropTypes.element),
     className: PropTypes.string,
 };
 
