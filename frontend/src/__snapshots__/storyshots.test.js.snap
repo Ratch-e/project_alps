@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Button Simple Button 1`] = `
+<button
+  className="button"
+  onClick={[Function]}
+  type="button"
+>
+  Hello, I am a button!
+</button>
+`;
+
+exports[`Storyshots Card Card With Component 1`] = `
+<div
+  className="card"
+>
+  <h1>
+    Title
+  </h1>
+</div>
+`;
+
+exports[`Storyshots Card Simple Card 1`] = `
+<div
+  className="card"
+>
+  Hello, I am a card!
+</div>
+`;
