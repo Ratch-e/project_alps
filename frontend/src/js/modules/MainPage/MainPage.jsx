@@ -1,5 +1,6 @@
 import React from 'react';
+import Gallery from '../Gallery/Gallery';
 
-const MainPage = () => <div>Я - главная страница.</div>;
+const MainPage = () => <Gallery />;
 
 export default MainPage;

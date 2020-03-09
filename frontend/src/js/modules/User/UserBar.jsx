@@ -22,7 +22,7 @@ const UserBar = observer(() => {
                 {store.loggedInUser ? (
                     <div>
                         <button onClick={logout}>
-                          Выйти
+                            Выйти
                         </button>
                         <Link to="/profile/">Мой профиль</Link>
                     </div>
