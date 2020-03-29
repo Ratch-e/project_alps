@@ -1,0 +1,9 @@
+.userBar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.item:not(:first-child) {
+    margin-left: 10px;
+}

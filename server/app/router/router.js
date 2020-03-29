@@ -4,7 +4,7 @@ const authentication = require("../controllers/authentication");
 const photos = require('../controllers/photos');
 
 //importing config for passort with strategies
-require("../../services/passport");
+require("../services/passport");
 
 const router = express.Router();
 
