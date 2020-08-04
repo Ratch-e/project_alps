@@ -1,3 +1,3 @@
-exports.upload = (req, res, next) => {
+exports.upload = (req) => {
     console.log(req.body);
-}
+};

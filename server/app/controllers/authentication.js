@@ -1,15 +1,15 @@
 const jwt = require("jwt-simple");
 const User = require("../models/user");
-const config = require("../config");
+const config = require("../../config/config");
 
 /**
  * creates a token for a user
  *
  * @param {*} user
  */
-const tokenForUser = user => {
-  const timestamp = new Date().getTime();
-  return jwt.encode({ sub: user.id, iat: timestamp }, config.secret);
+const tokenForUser = (user) => {
+    const timestamp = new Date().getTime();
+    return jwt.encode({ sub: user.id, iat: timestamp }, config.secret);
 };
 
 /**
@@ -20,11 +20,11 @@ const tokenForUser = user => {
  * @param {*} res
  */
 const checkCredentials = (email, password, res) => {
-  if (!email || !password) {
-    return res
-      .status(422)
-      .send({ error: "You must provide an email and a password" });
-  }
+    if (!email || !password) {
+        return res
+            .status(422)
+            .send({ error: "You must provide an email and a password" });
+    }
 };
 
 /**
@@ -35,39 +35,39 @@ const checkCredentials = (email, password, res) => {
  * @param {*} next
  */
 exports.signup = (req, res, next) => {
-  //gets a password and an email strings
-  const email = req.body.email;
-  const password = req.body.password;
+    //gets a password and an email strings
+    const email = req.body.email;
+    const password = req.body.password;
 
-  //checks if they are good
-  checkCredentials(email, password, res);
+    //checks if they are good
+    checkCredentials(email, password, res);
 
-  //checks if user already exist - reject, if not - save
-  User.findOne({ email: email }, (err, existingUser) => {
-    if (err) {
-      return next(err);
-    }
+    //checks if user already exist - reject, if not - save
+    User.findOne({ email: email }, (err, existingUser) => {
+        if (err) {
+            return next(err);
+        }
 
-    if (existingUser) {
-      return res.status(422).send({ error: "Email is in use" });
-    }
+        if (existingUser) {
+            return res.status(422).send({ error: "Email is in use" });
+        }
 
-    //if everything is ok - create a new user and save it
-    const newUser = new User({ email, password });
-    newUser.save(err =>
-      err
-        ? next(err)
-        : res.json({
-            token: tokenForUser(newUser),
-            email: newUser.email,
-          }),
-    );
-  });
+        //if everything is ok - create a new user and save it
+        const newUser = new User({ email, password });
+        newUser.save((err) =>
+            err
+                ? next(err)
+                : res.json({
+                      token: tokenForUser(newUser),
+                      email: newUser.email,
+                  })
+        );
+    });
 };
 
-exports.login = (req, res, next) => {
-  res.send({
-    token: tokenForUser(req.user),
-    email: req.user.email,
-  });
+exports.login = (req, res) => {
+    res.send({
+        token: tokenForUser(req.user),
+        email: req.user.email,
+    });
 };
