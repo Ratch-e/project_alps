@@ -10,7 +10,10 @@ const config = require("../config/config.js");
 
 const app = express();
 
-mongoose.connect(config.mongodbUrl, { useNewUrlParser: true });
+mongoose.connect(config.mongodbUrl, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
 mongoose.set("useCreateIndex", true);
 
 // добавить логирование
