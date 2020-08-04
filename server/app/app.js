@@ -17,12 +17,7 @@ mongoose.connect(config.mongodbUrl, {
 mongoose.set("useCreateIndex", true);
 
 // добавить логирование
-app.use(
-    morgan(
-        // eslint-disable-next-line quotes
-        ':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'
-    )
-);
+app.use(morgan("dev"));
 app.use(cors());
 // добавить статику
 app.use(express.static(path.resolve(__dirname, "..", "frontend", "build")));
