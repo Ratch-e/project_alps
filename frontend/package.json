@@ -2,6 +2,17 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:9000/",
+  "scripts": {
+    "start-js": "react-app-rewired start",
+    "build-js": "react-app-rewired build",
+    "start": "npm-run-all -p start-js",
+    "build": "npm-run-all build-js",
+    "test": "react-app-rewired test --env=jsdom",
+    "eject": "react-app-rewired eject",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
+  },
   "dependencies": {
     "@storybook/addon-actions": "^3.4.11",
     "@storybook/addon-links": "^3.4.11",
@@ -25,20 +36,9 @@
     "react-dom": "^16.13.0",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "^3.4.0",
+    "react-scripts": "^3.4.1",
     "react-test-renderer": "^16.13.0",
     "typescript": "^3.8.3"
-  },
-  "proxy": "http://localhost:9000/",
-  "scripts": {
-    "start-js": "react-app-rewired start",
-    "build-js": "react-app-rewired build",
-    "start": "npm-run-all -p start-js",
-    "build": "npm-run-all build-js",
-    "test": "react-app-rewired test --env=jsdom",
-    "eject": "react-app-rewired eject",
-    "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
   },
   "devDependencies": {
     "@storybook/addon-storyshots": "^5.3.14",

@@ -1,23 +1,21 @@
 const express = require("express");
 const passport = require("passport");
-const authentication = require("../controllers/authentication");
+const { signup, login } = require("../controllers/authentication");
 const photos = require("../controllers/photos");
 
 //importing config for passort with strategies
 require("../services/passport");
-
-const router = express.Router();
-
 // const requireAuth = passport.authenticate("jwt", { session: false });
 const requireLogin = passport.authenticate("local", { session: false });
 
+const router = express.Router();
 router.use((req, res, next) => {
     next();
 });
 
 //auth
-router.route("/signup").post(authentication.signup);
-router.route("/login").post(requireLogin, authentication.login);
+router.route("/signup").post(signup);
+router.route("/login").post(requireLogin, login);
 
 //photos
 router.route("/photos/upload").post(photos.upload);
